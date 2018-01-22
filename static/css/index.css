@@ -1,0 +1,71 @@
+.box {
+    height :80vh;
+    width: 100%;
+    background-color:whitesmoke;
+    
+    background-size: cover;
+
+    border-spacing: 10px 0px;
+    display: table;
+  
+    }
+.column {
+    display:table-cell;
+    width:25%;
+    height:100%;
+    background-color: whitesmoke;
+    background-size: cover;
+    padding:30px 30px;
+    vertical-align:top;
+    position: relative;
+    background-size: cover;
+    }
+.columntwo {
+    display:table-cell;
+    vertical-align:top;
+    background-position: absolute;
+    width:75%;
+    height:100%;
+    background-color: whitesmoke;
+    padding:20px 20px;
+    background-size: cover;
+    max-width: 500px;
+    position: relative;
+
+    }
+
+.imgholder{
+    
+    height: 100%;
+    width: 100%;
+    max-width: 900px;
+    max-height: 400px;
+    position: relative;
+    padding: 10px;
+ 
+}
+.labelholder{
+    border:1px solid;
+    height: 100%;
+    width: 100%;
+    max-width: 900px;
+    max-height: 400px;
+    position: relative;
+}
+.pictureholder{
+    border:1px solid;
+    padding:10px;
+}
+
+.ScrollStyle
+{
+    overflow-y: scroll;
+    height: 100%
+}
+   
+.form {
+ 
+    padding: 20px;
+    
+}
+

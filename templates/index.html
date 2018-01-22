@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Postcard Creator </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/w3.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/index.js"></script>
+    <link href="../static/css/index.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+
+                <ul class="nav nav-pills pull-right">
+                    <li class="active">
+                        <a data-toggle="pill" href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a data-toggle="pill" href="#createcard">Send a postcard</a>
+                    </li>
+                    <li>
+                        <a data-toggle="pill" href="#help">Help</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Postcard App</h3>
+        </div>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <div class="jumbotron homesectionimage">
+                    <h1 style="color: white">Share memories with
+                        <br/> photo postcards</h1>
+                    <p class="lead"></p>
+                    <p>
+
+                    </p>
+                    <p class="lead"></p>
+                </div>
+
+            </div>
+
+
+            <!-- send a postcard tab-->
+            <div id="createcard" class="tab-pane fade">
+                <div class="box">
+                    <div class="column">
+
+                        <div id="Pictures" class="tab-pane fade in active ScrollStyle">
+
+
+                            <img id="springImgId" src="../static/cherry.png" alt="" draggable="true" onmousedown="get_pos(event)" ondragstart="drag(event)"
+                                class="pictureholder img-thumbnail" width="200px" height="200px">
+
+                            <img id="summerImgId" src="../static/summer.png" alt="" draggable="true" onmousedown="get_pos(event)" ondragstart="drag(event)"
+                                class="pictureholder img-thumbnail" width="200px" height="200px">
+
+                            <img id="autumnImgId" src="../static/autumn.png" alt="" draggable="true" onmousedown="get_pos(event)" ondragstart="drag(event)"
+                                class="pictureholder img-thumbnail" width="200px" height="200px">
+
+                            <img id="winterImgId" src="../static/winter.png" alt="" draggable="true" onmousedown="get_pos(event)" ondragstart="drag(event)"
+                                class="pictureholder img-thumbnail" width="200px" height="200px">
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="columntwo">
+                        <!-- <video autoplay id="vid" style="display:none;"></video>
+                        <button onclick="snapshot()">Take Picture </button> -->
+                        <form class="form" name="frmUpload" action='/uploaddata' method="post" enctype="multipart/form-data">
+
+                            <div>
+                                <input type="file" name="image" id="fileUpload" onchange="loadImage(this)" style="display:none">
+
+
+                                <label for="fileUpload" alt="" id="imgid" class="labelholder">
+                                    <input id="inp_img" name="InputImgFromCanvas" type="hidden" value="">
+
+                                    <canvas id='postCardCanvas' class="imgholder" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+                                    </canvas>
+                                </label>
+                            </div>
+                            <br/>
+
+                            <div class="content">
+                                <div class="form-group row">
+                                    <div class="col-xs-6">
+                                        <input type="text" name="greetingMsg" id="greetingMsg" class="form-control transparent-input" placeholder="enter message here"
+                                            autofocus oninput="fillText(this)">
+                                        <!-- onchange="fillText(this);this.value=''">-->
+                                    </div>
+
+                                    <div class="col-xs-4">
+                                        <button type="button" class="btn btn-primary form-control" onclick="resetImage()">Clear Message</button>
+
+                                    </div>
+                                </div>
+
+                                <br/>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-xs-4">
+                                    <input type="email" name="senderEmail" id="senderEmail" class="form-control" placeholder="sender email address" required
+                                        autofocus>
+                                </div>
+                                <div class="col-xs-4">
+                                    <input type="email" name="recipientEmail" id="recipientEmail" class="form-control" placeholder="recipient email address"
+                                        required autofocus>
+                                </div>
+                                <div class="col-xs-3">
+                                    <button type="submit" onsubmit="submitImg()" class="btn btn-primary form-control">Send</button>
+                                </div>
+
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="help" class="box tab-pane fade">
+                <div class="container box">
+
+                </div>
+
+            </div>
+            <img id="dragAndDropId" src="../static/upload-files-here.png" alt="" draggable="true" onmousedown="get_pos(event)" ondragstart="drag(event)"
+                style="visibility:hidden">
+
+        </div>
+    </div>
+    <div class="container">
+        {% if(result) %}
+        <button type="button" id="modalbtn" onload=triggermodal() class="btn btn-info btn-lg" style="visibility:hidden" data-toggle="modal"
+            data-target="#myModal">Open Modal</button>
+        {% endif %}
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Result</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            <p> {{result}}</p>
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        .homesectionimage {
+            background-image: url('../static/homepage.jpg');
+            background-position: absolute;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 85vh;
+        }
+    </style>
+</body>
+
+</html>
