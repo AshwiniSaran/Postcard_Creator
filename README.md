@@ -19,7 +19,7 @@ This is a simple web application being developed with Flask/Python framework whi
 # 2. Flask
 - NAvigate to the python installed folder commonly(C:\Users\<<Your Folder>>\AppData\Local\Programs\Python\Python36) in windows
 - Inside the scripts folder, execute as 
-         run pip3.6 install flask
+         >>run pip3.6 install flask
 
 # 3. SMTP Server
 - Assign the available SMPT Server Name and credentials to the CONSTANTS in app.py
