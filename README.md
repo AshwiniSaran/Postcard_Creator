@@ -1,4 +1,4 @@
-# Postcard_Creator
+# Postcard Creator
 ### POSTCARD CREATOR WEB APPLICATION
 
 This is a simple web application being developed with Flask/Python framework which is intented for creating Postcard online and email it as an attachment.
