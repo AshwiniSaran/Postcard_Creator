@@ -11,17 +11,17 @@ This is a simple web application being developed with Flask/Python framework whi
 ## INSTALLATIONS
 # 1. Python 
 
--Go to https://www.python.org/downloads/ and download the latest version available for your machine.
--Run the downloaded file and install the pythn 3.6
--set the ENVIRONMENT PATH VARIABLE to the scripts folder of python installed
+- Go to https://www.python.org/downloads/ and download the latest version available for your machine.
+- Run the downloaded file and install the pythn 3.6
+- set the ENVIRONMENT PATH VARIABLE to the scripts folder of python installed
 (windows->Control Panel->Advanced system settings->Environment Variable->set the path attribute)
 
 # 2. Flask
--NAvigate to the python installed folder commonly(Users\AppData\Local\Programs\Python\Python36) in windows
--Inside the scripts folder select the pip3.6.exe and exceute
+- NAvigate to the python installed folder commonly(Users\AppData\Local\Programs\Python\Python36) in windows
+- Inside the scripts folder select the pip3.6.exe and exceute
 
 # 3. SMTP Server
--Assign the available SMPT Server Name and credentials to the CONSTANTS in app.py
+- Assign the available SMPT Server Name and credentials to the CONSTANTS in app.py
 
 ## LOCAL SETUP
 1. Clone the repository from below Github url to the master branch 
