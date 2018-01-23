@@ -16,6 +16,17 @@ from flask import Flask, render_template, request
 APP = Flask(__name__)
 APP.config['TEMPLATES_AUTO_RELOAD'] = True
 
+#Provide SMTP Server Name
+SMTP_SERVER_NAME = "" # "localhost"
+#Provide SMTP Port
+SMPT_SERVER_PORT = "" #2500"
+
+#set SMTP_AUTH_REQUIRED as 1
+SMTP_AUTH_REQUIRED = 1 #0
+
+#Provide SMTP Credentials
+SMTP_USER_NAME = ""
+SMTP_PASSWORD = ""
 
 @APP.route('/')
 def homepage():
@@ -97,9 +108,12 @@ def send_email(senderemail, recipientemail, imgfilename):
         # Send the message via local SMTP server.
     try:
         #todo Extenalize server name, port number
-        sendingemail = smtplib.SMTP("localhost", 2500)
+        #sendingemail = smtplib.SMTP("localhost", 2500)
+        sendingemail = smtplib.SMTP(SMTP_SERVER_NAME, SMPT_SERVER_PORT)
         #todo if(SMTP.AUTH.REQUIRED == TRUE)
-        #         #sendingemail.login([SMTP.USER.NAME], [SMTP.PWD])
+        if ( SMTP_AUTH_REQUIRED == 1 ):
+            sendingemail.login(SMTP_USER_NAME, SMTP_USER_PWD)
+        #local smtp server
         print(senderemail, recipientemail)
         sendingemail.sendmail(senderemail, recipientemail, msgroot.as_string())
         sendingemail.quit()

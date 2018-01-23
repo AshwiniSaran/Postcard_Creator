@@ -144,10 +144,9 @@
         </div>
     </div>
     <div class="container">
-        {% if(result) %}
-        <button type="button" id="modalbtn" onload=triggermodal() class="btn btn-info btn-lg" style="visibility:hidden" data-toggle="modal"
-            data-target="#myModal">Open Modal</button>
-        {% endif %}
+
+        <button type="button" id="modalbtn" onload=triggermodal() class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -160,8 +159,9 @@
                         <h4 class="modal-title">Result</h4>
                     </div>
                     <div class="modal-body">
-                        <p>
+                        <p>{% if(result) %}
                             <p> {{result}}</p>
+                            {% endif %}
                         </p>
 
                     </div>

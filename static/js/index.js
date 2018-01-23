@@ -71,7 +71,7 @@ function fill_canvas(img) {
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     clearMessage();
-   
+
 
 }
 
@@ -89,7 +89,7 @@ function fillText(txt) {
     ctx.fillStyle = gradient;
     ctx.fillText(txt.value, 10, (canvas.height * .85));
     submitImg();
-  
+
 }
 
 function validateemailadd() {
