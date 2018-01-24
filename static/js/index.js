@@ -79,7 +79,7 @@ function fillText(txt) {
     var canvas = document.getElementById("postCardCanvas");
     var ctx = canvas.getContext('2d');
 
-    ctx.font = "20px Verdana";
+    ctx.font = "60px Verdana";
     var gradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
     gradient.addColorStop("0.20", "white");
     gradient.addColorStop("0.40", "yellow");

@@ -38,7 +38,8 @@ def homepage():
         return render_template('index.html', result=result)
     except Exception as ex:
         print(ex)
-        return render_template('index.html')
+        result = ""
+        return render_template('index.html',result=result)
 
 
 @APP.route('/uploaddata', methods=['POST'])
