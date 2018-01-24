@@ -1,5 +1,5 @@
-#!usr/bin/python
 """ Post Card APP"""
+#!usr/bin/python
 
 import smtplib
 import os
@@ -18,16 +18,17 @@ APP = Flask(__name__)
 APP.config['TEMPLATES_AUTO_RELOAD'] = True
 
 #Provide SMTP Server Name
-SMTP_SERVER_NAME = "" # "localhost"
+SMTP_SERVER_NAME = " "   #localhost"
 #Provide SMTP Port
-SMPT_SERVER_PORT = "" #2500"
-
-#set SMTP_AUTH_REQUIRED as 1
-SMTP_AUTH_REQUIRED = 1 #0
+SMPT_SERVER_PORT = " "   #2500"
 
 #Provide SMTP Credentials
 SMTP_USER_NAME = ""
-SMTP_PASSWORD = ""
+SMTP_USER_PWD = ""
+
+#set SMTP_AUTH_REQUIRED as 1
+SMTP_AUTH_REQUIRED = 1
+
 
 @APP.route('/')
 def homepage():
@@ -44,9 +45,9 @@ def homepage():
 def uploaddata():
     """ Uploads data to the server from client """
     try:
-        #Read canvas data 
+        #Read client data
         base64_string = request.form['InputImgFromCanvas']
-        base64_string = str.replace(base64_string, "data:image/png;base64, "")
+        base64_string = str.replace(base64_string, "data:image/png;base64,", "")
         base64_string = str.replace(base64_string, " ", "+")
 
         missing_padding_length = len(base64_string) % 4
@@ -100,14 +101,14 @@ def send_email(senderemail, recipientemail, imgfilename):
             filename='postcard' + str(datetime.now()) + '.png')
         msgroot.attach(msghtml)
         msgroot.attach(msgimg)
-     
     try:
-        #sendingemail = smtplib.SMTP("localhost", 2500)
         sendingemail = smtplib.SMTP(SMTP_SERVER_NAME, SMPT_SERVER_PORT)
-        #todo if(SMTP.AUTH.REQUIRED == TRUE)
-        if ( SMTP_AUTH_REQUIRED == 1 ):
-            sendingemail.login(SMTP_USER_NAME, SMTP_USER_PWD)
-        
+        if  SMTP_AUTH_REQUIRED == 0:
+            print('from: '+senderemail+' to: '+recipientemail)
+            sendingemail.sendmail(senderemail, recipientemail, msgroot.as_string())
+            sendingemail.quit()
+            return 1
+        sendingemail.login(SMTP_USER_NAME, SMTP_USER_PWD)
         print('from'+senderemail+' to'+recipientemail)
         sendingemail.sendmail(senderemail, recipientemail, msgroot.as_string())
         sendingemail.quit()

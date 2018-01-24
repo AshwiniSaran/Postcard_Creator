@@ -76,8 +76,6 @@
                         </div>
                     </div>
                     <div class="columntwo">
-                        <!-- <video autoplay id="vid" style="display:none;"></video>
-                        <button onclick="snapshot()">Take Picture </button> -->
                         <form class="form" name="frmUpload" action='/uploaddata' method="post" enctype="multipart/form-data">
 
                             <div>
@@ -145,14 +143,13 @@
     </div>
     <div class="container">
 
-        <button type="button" id="modalbtn" onload=triggermodal() class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <button type="button" id="modalbtn" onload=triggermodal() style="visibility:hidden" class="btn btn-info btn-lg" data-toggle="modal"
+            data-target="#myModal">Open Modal</button>
 
 
-        <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
 
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
