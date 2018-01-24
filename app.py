@@ -1,3 +1,4 @@
+#!usr/bin/python
 """ Post Card APP"""
 
 import smtplib
@@ -43,13 +44,11 @@ def homepage():
 def uploaddata():
     """ Uploads data to the server from client """
     try:
-
+        #Read canvas data 
         base64_string = request.form['InputImgFromCanvas']
-        base64_string = str.replace(base64_string, "data:image/png;base64,",
-                                    "")
+        base64_string = str.replace(base64_string, "data:image/png;base64, "")
         base64_string = str.replace(base64_string, " ", "+")
 
-        # Adding Padding
         missing_padding_length = len(base64_string) % 4
         if missing_padding_length != 0:
             base64_string = base64_string + '=' * (4 - missing_padding_length)
@@ -59,8 +58,8 @@ def uploaddata():
         writefile(decoded_data, output_file_name)
 
         senderemail = request.form['senderEmail']
-        print(senderemail)
         recipientemail = request.form['recipientEmail']
+        #invoke emailing function
         emailstatus = send_email(senderemail, recipientemail, output_file_name)
         if emailstatus == 1:
             result = "Email sent successfully"
@@ -74,9 +73,6 @@ def uploaddata():
         result = ex
         print(result)
         return render_template('index.html', result=result)
-    #emailstatusmsg= 'Email failed'
-    #return render_template('index.html')
-
 
 def send_email(senderemail, recipientemail, imgfilename):
     """sends email"""
@@ -104,17 +100,15 @@ def send_email(senderemail, recipientemail, imgfilename):
             filename='postcard' + str(datetime.now()) + '.png')
         msgroot.attach(msghtml)
         msgroot.attach(msgimg)
-
-        # Send the message via local SMTP server.
+     
     try:
-        #todo Extenalize server name, port number
         #sendingemail = smtplib.SMTP("localhost", 2500)
         sendingemail = smtplib.SMTP(SMTP_SERVER_NAME, SMPT_SERVER_PORT)
         #todo if(SMTP.AUTH.REQUIRED == TRUE)
         if ( SMTP_AUTH_REQUIRED == 1 ):
             sendingemail.login(SMTP_USER_NAME, SMTP_USER_PWD)
-        #local smtp server
-        print(senderemail, recipientemail)
+        
+        print('from'+senderemail+' to'+recipientemail)
         sendingemail.sendmail(senderemail, recipientemail, msgroot.as_string())
         sendingemail.quit()
         return 1
@@ -147,7 +141,6 @@ def generateuniquefilename(extn):
     output_file_name = os.getcwd(
     ) + "/output/" + "postcard" + time_stamp + "." + extn
     return output_file_name
-
 
 if __name__ == "__main__":
     APP.run()
