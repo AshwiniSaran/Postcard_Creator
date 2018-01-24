@@ -31,9 +31,10 @@ This is a simple web application being developed with Flask/Python framework whi
 
 (1) Download from github url https://github.com/AshwiniSaran/Postcard_Creator 
 
-(2)  In order to include ther SMTP Server to the program. 
+(2) In order to include ther SMTP Server to the program. 
          - Navigate to Application folder and open app.py
          - Assign the available SMPT Server Name, port and credentials respectively to the CONSTANTS in app.py as shown below
+         - Save and close app.py
                   
                   #Provide SMTP Server Name
                   SMTP_SERVER_NAME = "" 
@@ -47,10 +48,9 @@ This is a simple web application being developed with Flask/Python framework whi
                   SMTP_USER_NAME = ""
                   SMTP_PASSWORD = ""
                   
-           - save and close app.py
-
+   
 (2) Open the command prompt and navigate to the application file folder
         - >In windows run as >python app.py
         - >In Linux change the script as executable using chmod+x and then run as python app.py
         
-(3)Open http://localhost:5000 in the browser so that the application is available. 
+(3) Open http://localhost:5000 in the browser so that the application is available. 
