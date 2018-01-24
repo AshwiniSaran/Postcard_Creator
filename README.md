@@ -33,20 +33,18 @@ This is a simple web application being developed with Flask/Python framework whi
 
 - In order to include ther SMTP Server to the program
     - Navigate to Application folder and open app.py
-    - Assign the available SMPT Server Name, port and credentials respectively to the CONSTANTS in app.py as shown below
+    - Assign the available SMPT Server Name, port and credentials respectively in app.py as shown below
     - Save and close app.py
                   
                   #Provide SMTP Server Name
-                  SMTP_SERVER_NAME = "" 
+                  SMTP_SERVER_NAME = " "   #localhost"
                   #Provide SMTP Port
-                  SMPT_SERVER_PORT = "" 
-
-                  #SET SMTP_AUTH_REQUIRED as 1
-                  SMTP_AUTH_REQUIRED = 1
+                  SMPT_SERVER_PORT = " "   #2500"
 
                   #Provide SMTP Credentials
                   SMTP_USER_NAME = ""
-                  SMTP_PASSWORD = ""
+                  SMTP_USER_PWD = ""
+
                   
    
 - Open the command prompt and navigate to the application file folder
